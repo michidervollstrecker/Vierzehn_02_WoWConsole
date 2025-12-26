@@ -1,43 +1,93 @@
-﻿using System.Collections.Generic;
-namespace Vierzehn_02
+﻿namespace Vierzehn_02
 {
     internal class Program
     {
-        internal static void WoWSampleSimulation()
-        {
-          
-            Random rnd = new Random();
-        }
-       
+
+
 
         static void Main(string[] args)
         {
-
-            BadBoss bdbs = new BadBoss(1, 1, "a");
-            Warrior wror = new Warrior(1, 1, "a");
-            Shaman shmn = new Shaman(1, 1, 1, "a"); 
-                
-            Console.WriteLine("Attack: {0},Health: {1} Name: {2} ", bdbs.Attack , bdbs.Health ,bdbs.Name);
-            Console.WriteLine("Attack: {0},Health: {1} Name: {2}", wror.Attack, wror.Health, wror.Name);
-            Console.WriteLine("Attack: {0}, Health: {1}, Heal: {2}, Name: {3}", shmn.Attack,shmn.Health,shmn.Healingvalue,shmn.Name);
-            //
-            int playercount = 3;
-            int deadplayers = 0;
-            while (deadplayers < playercount )
+            Random rnd = new Random();
+            Console.WriteLine("Geben Sie die SpielerZahl ein: ");
+            int pcount = int.Parse(Console.ReadLine());
+            int ip = 1;
+            for (int i = 0; i < pcount; i++)
             {
-                if (wror.Health <= 0) { deadplayers++; Console.WriteLine("Dead" + "DeadPlayers: " + deadplayers);
-               
+                Console.WriteLine("Wählen Sie aus\n [1]_BadBoss \n [2]_Warrior \n [3]_Shaman \n [4]_Shield");
+                int pclass = int.Parse(Console.ReadLine());
+                if (pclass == 1)
+                {
+                    bool boolbs = true;
+                    Console.WriteLine("BadBoss ausgewählt, Namen eingeben: ");
+                    BadBoss badBss = new BadBoss();
+                    badBss.Name = Console.ReadLine();
+                    badBss.Attack = rnd.Next(600, 1000);
+                    badBss.Health = rnd.Next(2000, 3000);
+                    badBss.Defense = rnd.Next(500, 600);
                 }
-                if(wror.Health < 0) { Console.WriteLine("Ein Untoter"); }
-                wror.Health -= bdbs.Attack;
-                Console.WriteLine("Warrior.Health: " + wror.Health);
-            }
-            {
+                if (pclass == 2)
+                {
 
+                    bool war = true;
+                    Console.WriteLine("Warrior ausgewählt, Namen eingeben: ");
+                    Warrior warr = new Warrior();
+                    warr.Name = Console.ReadLine();
+                    warr.Attack = rnd.Next(200, 350);
+                    warr.Health = rnd.Next(1000, 1500);
+                    warr.Defense = rnd.Next(800, 1200);
+                }
+                if (pclass == 3)
+                {
+                    bool sham = true;
+                    Console.WriteLine("Schaman ausgewählt, Namen eingeben: ");
+                    Shaman shama = new Shaman();
+                    shama.Name = Console.ReadLine();
+                    shama.Attack = rnd.Next(50, 100);
+                    shama.Defense = rnd.Next(100, 200);
+                    shama.Health = rnd.Next(500, 1000);
+                }
+                if (pclass == 4)
+                {
+                    bool shld = true;
+                    Console.WriteLine("Shield ausgewählt, Namen eingeben: ");
+                    Shield shield = new Shield();
+                    shield.Name = Console.ReadLine();
+                    shield.Attack = rnd.Next(200, 500);
+                    shield.Defense = rnd.Next(1000, 2000);
+                    shield.Health = rnd.Next(2000, 3000);
+                }
+                ip++;
             }
-           
-            List<int> players = new List<int>();
-            
         }
+    }
+    public class BadBoss
+    {
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Health { get; set; }
+        public string Name { get; set; }
+
+    }
+    public class Warrior()
+    {
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Health { get; set; }
+        public string Name { get; set; }
+    }
+    public class Shaman
+    {
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Health { get; set; }
+        public int Healingvalue { get; set; }
+        public string Name { get; set; }
+    }
+    public class Shield
+    {
+        public int Attack { get; set; }
+        public int Defense { get; set; }
+        public int Health { get; set; }
+        public string Name { get; set; }
     }
 }
